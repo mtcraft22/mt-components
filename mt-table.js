@@ -1,19 +1,20 @@
 class Tablaextendida extends HTMLElement{
     constructor(){
         super()
-        this._rows=2
-        this._columns=2
+        this._rows=1
+        this._columns=1
         this.tabledom=this.attachShadow({mode:"open"})
-        this.tabla=document.createElement("table")
         this.css=document.createElement("link")
         this.css.setAttribute("href","mt-table.css")
         this.css.setAttribute("rel","stylesheet")
     }
     static get observedAttributes(){return ["rows","columns"]}
     updatetable(){
-        
+        this.tabla=document.createElement("table")
+        this.tabla.setAttribute("id","tablas")
         this.tabledom.appendChild(this.css)
         this.tabledom.appendChild(this.tabla)
+    
         for (let i=0; i<this._rows; i++){
             this.tabla.appendChild(document.createElement("tr"))
             for (let j=0; j<this._columns; j++){
@@ -27,19 +28,23 @@ class Tablaextendida extends HTMLElement{
         }
     }
     connectedCallback(){
-        
+        if(this.tabledom.getElementById("tablas")!=null){
+            this.tabledom.getElementById("tablas").remove()
+        }
         this.updatetable()
     }
     attributeChangedCallback(atr,old,newval){
-       if (atr=="rows"){
+        if (atr=="rows"){
         this._rows=newval
-       }
-       if (atr=="columns"){
+        }
+        if (atr=="columns"){
         this._columns=newval
-       }
-       this.tabledom.removeChild(this.css)
-       this.tabledom.removeChild(this.tabla)
-       this.updatetable()
+        }
+        if(this.tabledom.getElementById("tablas")!=null){
+            this.tabledom.getElementById("tablas").remove()
+        }
+        
+        this.updatetable()
     }
     
 }
