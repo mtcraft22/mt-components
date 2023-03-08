@@ -9,3 +9,6 @@ td{
     border: 1px black dotted;
     padding: 5px;
 }
+td:hover{
+    padding: 10px;
+}
