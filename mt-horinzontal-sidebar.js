@@ -14,10 +14,14 @@ class Horinzontalsiderbar extends HTMLElement{
         //this.parsed=JSON.parse(this.elements)
         this.side_dom.appendChild(this.css)
         this.side_dom.appendChild(this.List)
-        this.elements.forEach(function (e){
-            
-        });
-        
+        for (let i=0;i<this.elements.length;i++){
+            this.adress=document.createElement("a")
+            this.adress.setAttribute("href",)
+            this.listitem=document.createElement("li")
+            this.listitem.append(this.adress)
+            this.listitem.innerHTML=this.elements[i].Tittle
+            this.List.appendChild(this.listitem)
+        }
     }
     connectedCallback(){     
         this.updatesidebar()
