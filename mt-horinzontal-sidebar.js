@@ -8,6 +8,9 @@ class Horinzontalsiderbar extends HTMLElement{
         this.css.setAttribute("href","mt-horinzontal-sidebar.css")
         this.css.setAttribute("rel","stylesheet")
     }
+    static get observedAttributes(){
+        return ["items"]
+    }
     updatesidebar(){
         this.List=document.createElement("ul")
         //this.parsed=JSON.parse(this.elements)
@@ -25,5 +28,19 @@ class Horinzontalsiderbar extends HTMLElement{
     connectedCallback(){     
         this.updatesidebar()
     }
+    attributeChangedCallback(nombre,viejovalor,nuevovalor){
+        if (nombre=="items"){
+            this.elements=[]
+            let lista=Array(nuevovalor)
+            for (let i=0;i<lista.length;i++){
+                console.log(lista[i])
+                console.log(JSON.parse(lista[i]))
+                
+
+            }
+            updatesidebar()
+        }
+    }
+
 }
 customElements.define("mt-vsiderbar",Horinzontalsiderbar)
