@@ -13,6 +13,7 @@ class Horinzontalsiderbar extends HTMLElement{
     }
     updatesidebar(){
         this.List=document.createElement("ul")
+        this.List.setAttribute("id","sidebar")
         //this.parsed=JSON.parse(this.elements)
         this.side_dom.appendChild(this.css)
         this.side_dom.appendChild(this.List)
@@ -25,20 +26,21 @@ class Horinzontalsiderbar extends HTMLElement{
             this.List.appendChild(this.listitem)
         }
     }
-    connectedCallback(){     
+    connectedCallback(){
+        if(this.side_dom.getElementById("sidebar")!=null){
+            this.side_dom.getElementById("sidebar").remove()
+        }     
         this.updatesidebar()
     }
     attributeChangedCallback(nombre,viejovalor,nuevovalor){
         if (nombre=="items"){
             this.elements=[]
             let lista=Array(nuevovalor)
-            for (let i=0;i<lista.length;i++){
-                console.log(lista[i])
-                console.log(JSON.parse(lista[i]))
-                
-
+            this.elements=JSON.parse(lista)
+            if(this.side_dom.getElementById("sidebar")!=null){
+                this.side_dom.getElementById("sidebar").remove()
             }
-            updatesidebar()
+            this.updatesidebar()
         }
     }
 
