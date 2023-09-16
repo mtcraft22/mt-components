@@ -1,10 +1,11 @@
+var cssroute = "./css/sidebar.css"
 class Horinzontalsiderbar extends HTMLElement{
     constructor(){
         super()
         this.side_dom=this.attachShadow({mode:"open"})
         this.elements=[{Tittle:'prueba',Adr:'prueba.html'}]
         this.css=document.createElement("link")
-        this.css.setAttribute("href","./css/sidebar.css")
+        this.css.setAttribute("href",cssroute)
         this.css.setAttribute("rel","stylesheet")
     }
     static get observedAttributes(){
