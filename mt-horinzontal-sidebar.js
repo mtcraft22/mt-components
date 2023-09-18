@@ -1,4 +1,5 @@
 var cssroute = "./css/sidebar.css"
+function setcss(route){cssroute=route}
 class Horinzontalsiderbar extends HTMLElement{
     constructor(){
         super()
