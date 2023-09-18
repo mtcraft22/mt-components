@@ -1,8 +1,8 @@
-var cssroute = "./css/sidebar.css"
-function setcss(route){cssroute=route}
+
 class Horinzontalsiderbar extends HTMLElement{
     constructor(){
         super()
+        this.cssroute="./css/sidebar.css"
         this.side_dom=this.attachShadow({mode:"open"})
         this.elements=[{Tittle:'prueba',Adr:'prueba.html'}]
         this.css=document.createElement("link")
@@ -10,7 +10,7 @@ class Horinzontalsiderbar extends HTMLElement{
         this.css.setAttribute("rel","stylesheet")
     }
     static get observedAttributes(){
-        return ["items"]
+        return ["items","css"]
     }
     updatesidebar(){
         var fileName = location.href.split("/").slice(-1)
@@ -44,6 +44,10 @@ class Horinzontalsiderbar extends HTMLElement{
             if(this.side_dom.getElementById("sidebar")!=null){
                 this.side_dom.getElementById("sidebar").remove()
             }
+            this.updatesidebar()
+        }
+        if (nombre=="css"){
+            this.css=nuevovalor
             this.updatesidebar()
         }
     }
