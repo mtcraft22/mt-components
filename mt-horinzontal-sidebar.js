@@ -47,7 +47,7 @@ class Horinzontalsiderbar extends HTMLElement{
             this.updatesidebar()
         }
         if (nombre=="css"){
-            this.css=nuevovalor
+            this.cssroute=nuevovalor
             this.updatesidebar()
         }
     }
